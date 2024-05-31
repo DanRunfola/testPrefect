@@ -23,7 +23,7 @@ def testFlow():
     print("This is a second test flow, executed at time " + TIMESTAMP)
     return(TIMESTAMP)
 
-testFlow.from_source(
-    source="git@github.com:DanRunfola/testPrefect.git",
+testFlow = flow.from_source(
+    source="https://github.com/DanRunfola/testPrefect.git",
     entrypoint="testDeploy.py:testFlow"
-).deploy(name="testDeploy", work_pool_name="process-agent-GPU")
+)#.deploy(name="testDeploy", work_pool_name="process-agent-GPU")
