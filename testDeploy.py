@@ -24,6 +24,6 @@ def testFlow():
     return(TIMESTAMP)
 
 testFlow.from_source(
-    source="https://github.com/DanRunfola/testPrefect.git",
+    source="git@github.com:DanRunfola/testPrefect.git",
     entrypoint="testDeploy.py:testFlow"
 ).deploy(name="testDeploy", work_pool_name="process-agent-GPU")
