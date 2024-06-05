@@ -14,12 +14,17 @@
 
 from prefect import flow, serve, task, deploy
 from datetime import datetime
+import time
 
 @flow(name="Test Flow",
-      description="A second test flow for Matt",
+      description="A test flow for Prefect",
       log_prints=True)
-def testFlow():
+def testFlow(testParameter):
     TIMESTAMP = str(datetime.now())
-    print("This is a second test flow, executed at time " + TIMESTAMP)
-    return(TIMESTAMP)
+    print("This is a test flow, executed at time " + TIMESTAMP)
+    n = 10**7
+    primes = [x for x in range(2, n) if all(x % i != 0 for i in range(2, int(x**0.5) + 1))]
+    print(f"Computed {len(primes)} primes in {time.time() - start_time:.2f} seconds")
+    print("Incoming parameter was: " + str(testParameter))
+    return(primes)
 

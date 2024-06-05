@@ -6,4 +6,7 @@ testFlow = flow.from_source(
     entrypoint="testDeploy.py:testFlow"
 )
 
-testFlow.deploy(name="testDeploy", work_pool_name="process-agent-GPU")
+testFlow.deploy(name="testDeploy", 
+                work_pool_name="generic-cpu-8GB", 
+                parameters=dict(testParameter="Test Parameter Value"),
+                cron="10 * * * *")
