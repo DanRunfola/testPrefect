@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cpu-8GB-prefect
+spec:
+  parallelism: 2
+  activeDeadlineSeconds: 7200 # 2 hours in seconds
+  template:
+    metadata:
+      name: cpu-8GB-pod-prefect
+    spec:
+      restartPolicy: Never # Ensure the pods do not restart
+      volumes:
+        - name: home-volume
+          persistentVolumeClaim:
+            claimName: dsmillerrunfol-rwm
+      containers:
+        - name: conda-container
+          image: "prefecthq/prefect:2-python3.10"
+          volumeMounts:
+            - name: home-volume
+              mountPath: /kube/home/
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo "Pod running for 2 hours, then will terminate"
+              sleep infinity # Will be killed after 2 hours by activeDeadlineSeconds
+          resources:
+            requests:
+              memory: "8Gi"
+              cpu: "1"
