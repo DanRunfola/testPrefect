@@ -9,4 +9,4 @@ testFlow = flow.from_source(
 testFlow.deploy(name="testDeploy", 
                 work_pool_name="generic-cpu-8GB", 
                 parameters=dict(testParameter="Test Parameter Value"),
-                cron="10 * * * *")
+                cron="*/10 * * * *")
