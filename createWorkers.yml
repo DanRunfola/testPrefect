@@ -25,7 +25,7 @@ spec:
             - |
               echo "Initializing prefect worker."
               prefect config set PREFECT_API_URL="http://128.239.58.222:4200/api"
-              prefect worker start --pool "generic-cpu-8GB"
+              prefect worker start --pool "generic-cpu-8GB" --concurrency-limit 1
               echo "Prefect initialized, pod will terminate at active duration walltime."
               sleep infinity 
           resources:
