@@ -20,6 +20,7 @@ import time
       description="A test flow for Prefect",
       log_prints=True)
 def testFlow(testParameter):
+    start_time = time.time()
     TIMESTAMP = str(datetime.now())
     print("This is a test flow, executed at time " + TIMESTAMP)
     n = 10**7
