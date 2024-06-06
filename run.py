@@ -8,5 +8,5 @@ testFlow = flow.from_source(
 
 testFlow.deploy(name="testDeploy", 
                 work_pool_name="k8s-pool", 
-                parameters=dict(testParameter="Test Parameter Value"),
-                cron="*/1 * * * *")
+                parameters=dict(testParameter="Test Parameter Value"))
+                #,cron="*/1 * * * *")
