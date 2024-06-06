@@ -15,11 +15,15 @@
 from prefect import flow, serve, task, deploy
 from datetime import datetime
 import time
+import os
 
 @flow(name="Test Flow",
       description="A test flow for Prefect",
       log_prints=True)
 def testFlow(testParameter):
+    env_cluster_uid = os.environ.get("PREFECT_KUBERNETES_CLUSTER_UID")
+    print(env_cluster_uid)
+    print("------")
     start_time = time.time()
     TIMESTAMP = str(datetime.now())
     print("This is a test flow, executed at time " + TIMESTAMP)
@@ -28,4 +32,7 @@ def testFlow(testParameter):
     print(f"Computed {len(primes)} primes in {time.time() - start_time:.2f} seconds")
     print("Incoming parameter was: " + str(testParameter))
     return(primes)
+
+
+
 
